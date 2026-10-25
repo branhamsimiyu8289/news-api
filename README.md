@@ -44,11 +44,11 @@ The API reads secrets from environment variables; never commit `.env`.
 
 ## Deploy the frontend to Vercel
 
-Deploy `index.html` as a static site with this directory as the Vercel project
-root. Before deploying, set the `api-base-url` meta tag in `index.html` to your
-Render service URL, such as `https://your-service.onrender.com` (no trailing
-slash). The blank value in the checked-in file is for local same-origin use.
-After changing the URL for production, redeploy the Vercel project.
+Use this directory as the Vercel project root. The included `vercel.json`
+builds and publishes only `index.html` as a static site. Before deploying, set
+the `api-base-url` meta tag in `index.html` to your Render service URL, such as
+`https://your-service.onrender.com` (no trailing slash). After changing the
+URL, redeploy the Vercel project.
 
 Keep any additional Vercel/custom domains in Render's `FRONTEND_ORIGINS` setting
 in sync with the frontend's production domain. CORS is restricted to the

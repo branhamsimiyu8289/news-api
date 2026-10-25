@@ -34,9 +34,9 @@ Open <http://127.0.0.1:8000>. The interactive API docs are at
 1. Push this project to a Git repository and create a Render web service from it
    using the included `render.yaml` Blueprint.
 2. In the Render service environment, set `NEWS_API_KEY` to your NewsAPI key.
-3. Set `FRONTEND_ORIGINS` to the exact Vercel origin, for example
-   `https://your-project.vercel.app`. Add additional comma-separated origins if
-   needed. Do not include a trailing slash.
+3. The known Vercel origin, `https://news-api-yjml.vercel.app`, is allowed by
+   default. Set `FRONTEND_ORIGINS` to add any other exact origins as a
+   comma-separated list. Do not include trailing slashes.
 4. Confirm the service is healthy at `https://your-service.onrender.com/healthz`.
 
 The Render service binds to Render's `PORT` and has a `/healthz` health check.
@@ -50,9 +50,10 @@ Render service URL, such as `https://your-service.onrender.com` (no trailing
 slash). The blank value in the checked-in file is for local same-origin use.
 After changing the URL for production, redeploy the Vercel project.
 
-Keep the Vercel domain in Render's `FRONTEND_ORIGINS` setting in sync with the
-frontend's production domain. CORS is restricted to those exact origins; local
-development defaults to `http://localhost:3000` and `http://127.0.0.1:3000`.
+Keep any additional Vercel/custom domains in Render's `FRONTEND_ORIGINS` setting
+in sync with the frontend's production domain. CORS is restricted to the
+configured exact origins; local development defaults to `http://localhost:3000`
+and `http://127.0.0.1:3000`.
 
 ## Debug
 

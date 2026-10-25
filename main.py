@@ -27,13 +27,16 @@ load_dotenv(BASE_DIR / ".env")
 
 NEWS_API_KEY = os.getenv("NEWS_API_KEY")
 NEWS_API_URL = "https://newsapi.org/v2/everything"
-configured_origins = os.getenv("FRONTEND_ORIGINS")
-if configured_origins is None:
-    ALLOWED_ORIGINS = ["http://localhost:3000", "http://127.0.0.1:3000"]
-else:
-    ALLOWED_ORIGINS = [
-        origin.strip() for origin in configured_origins.split(",") if origin.strip()
-    ]
+ALLOWED_ORIGINS = [
+    "https://news-api-yjml.vercel.app",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+configured_origins = os.getenv("FRONTEND_ORIGINS", "")
+ALLOWED_ORIGINS.extend(
+    origin.strip() for origin in configured_origins.split(",") if origin.strip()
+)
+ALLOWED_ORIGINS = list(dict.fromkeys(ALLOWED_ORIGINS))
 
 # NewsAPI has no built-in "politics", "weather" or "agriculture" categories,
 # so each category is mapped to a search query instead.

@@ -127,3 +127,7 @@ and `http://127.0.0.1:3000`.
   requests made by the page.
 
 Keep `.env` private and do not commit or share your API key.
+
+## Author
+
+Branham Simiyu

@@ -1,7 +1,51 @@
 # News API
 
-A small FastAPI app that serves the Field Notes News page and fetches articles
-from NewsAPI.
+News API is a small news reader that brings a category-based news feed to a
+simple web page. The project includes a FastAPI backend and a responsive,
+static frontend called **Field Notes News**. The backend retrieves English
+articles from NewsAPI, and the frontend presents them as browsable story cards.
+
+## What the project provides
+
+- **Four topic feeds:** Politics, Weather, Sports, and Agriculture & Farming.
+- **Current headlines:** articles are requested from NewsAPI and sorted by
+  publication time, with each card showing the headline, source, publication
+  date, and—when available—an image and description.
+- **Category browsing and pagination:** select a topic and load more stories
+  without leaving the page.
+- **Responsive reading experience:** the page adapts to smaller screens and
+  includes light and dark themes, loading indicators, and helpful empty/error
+  messages.
+- **A protected API key:** NewsAPI requests are made by the backend, which
+  keeps `NEWS_API_KEY` out of browser code and sends it to NewsAPI in a request
+  header.
+
+NewsAPI does not provide built-in categories for these topics, so the backend
+maps each topic to a related search query. This is a lightweight news reader;
+it does not store articles or provide user accounts.
+
+## How it works
+
+1. The browser loads the Field Notes News page.
+2. The page requests articles from the FastAPI backend for the selected topic
+   and page.
+3. The backend checks the requested topic, calls NewsAPI, and returns a
+   simplified response containing only the article fields used by the page.
+4. The frontend displays the results and lets the reader request another page.
+
+## API endpoints
+
+- `GET /healthz` — returns `{"status":"ok"}` for deployment health checks.
+- `GET /api/categories` — returns the available category IDs: `politics`,
+  `weather`, `sports`, and `agriculture`.
+- `GET /api/news?category=politics&page=1&page_size=12` — returns articles for
+  a category. `page` starts at 1; `page_size` can be from 1 to 30. The response
+  includes the selected category, total result count, and articles with title,
+  description, URL, image, source, and publication time.
+- `GET /` — serves the frontend page from the backend.
+
+Interactive API documentation is available at `/docs` when the service is
+running locally.
 
 ## Run locally (Windows PowerShell)
 

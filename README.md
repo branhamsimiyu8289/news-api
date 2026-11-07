@@ -33,6 +33,20 @@ it does not store articles or provide user accounts.
    simplified response containing only the article fields used by the page.
 4. The frontend displays the results and lets the reader request another page.
 
+## Project structure
+
+```text
+news-api/
+├── .env.example       # Example environment variables for local setup
+├── .gitignore         # Files excluded from version control
+├── README.md          # Project overview, setup, API, and deployment guide
+├── index.html         # Static Field Notes News frontend
+├── main.py            # FastAPI backend and API routes
+├── render.yaml        # Render backend service configuration
+├── requirements.txt   # Python dependencies
+└── vercel.json        # Vercel static frontend configuration
+```
+
 ## API endpoints
 
 - `GET /healthz` — returns `{"status":"ok"}` for deployment health checks.
